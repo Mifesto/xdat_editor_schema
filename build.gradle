@@ -2,7 +2,10 @@ apply plugin: 'groovy'
 
 repositories {
     mavenCentral()
-    maven { url "https://raw.githubusercontent.com/acmi/L2crypt/mvn-repo" }
+	maven { url "https://raw.githubusercontent.com/acmi/L2crypt/mvn-repo" }
+    maven { url "https://raw.githubusercontent.com/acmi/L2io/mvn-repo" }
+    maven { url "https://raw.githubusercontent.com/acmi/Serializer/mvn-repo" }
+    maven { url "https://raw.githubusercontent.com/acmi/L2unreal/mvn-repo" }
 }
 
 dependencies {
