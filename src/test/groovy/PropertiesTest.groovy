@@ -131,6 +131,12 @@ class PropertiesTest {
     }
 
     @Test
+    void HeliosRu() {
+        new etoa3_ru.XDAT()
+        test(SubclassManager.instance.getClassWithAllSubclasses(etoa3_ru.DefaultProperty))
+    }
+
+    @Test
     void GrandCrusade() {
         new etoa4.XDAT()
         test(SubclassManager.instance.getClassWithAllSubclasses(etoa4.DefaultProperty))
