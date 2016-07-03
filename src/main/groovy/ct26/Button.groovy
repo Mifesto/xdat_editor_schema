@@ -2,16 +2,22 @@ package ct26
 
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
+import acmi.l2.clientmod.util.ComponentFactory
 import acmi.l2.clientmod.util.Description
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.transform.CompileStatic
 import groovyx.javafx.beans.FXBindable
+import javafx.beans.binding.Bindings
+import javafx.scene.control.Button as FXButton
+import javafx.scene.layout.Border
 
-@FXBindable
+import java.util.concurrent.Callable
+
 @DefaultIO
 @CompileStatic
-class Button extends DefaultProperty {
+@FXBindable
+class Button extends DefaultProperty implements ComponentFactory<FXButton> {
     @Tex
     String normalTex = 'undefined'
     @Tex
@@ -27,6 +33,42 @@ class Button extends DefaultProperty {
     Boolean defaultSoundOn
     @Description('-9999/5000')
     int disableTime = -9999
+
+    @Override
+    FXButton create() { new FXButton() }
+
+    @Override
+    void initProperties(FXButton button) {
+        super.initProperties(button)
+
+        button.textProperty().bind(Bindings.createStringBinding({
+            if (getResources() == null)
+                return null;
+
+            return getButtonNameText() != null && !getButtonNameText().isEmpty() && !getButtonNameText().equalsIgnoreCase('undefined') ?
+                    getButtonNameText() : getResources().getSysString(getButtonName());
+        }, resourcesProperty(), buttonNameProperty(), buttonNameTextProperty()));
+
+        button.borderProperty().bind(Bindings.createObjectBinding({
+            if (getResources() == null)
+                return null
+
+            def border = null
+            if (button.isDisabled())
+                border = getResources().getBorder(getNormalTex() + "_Disable")
+            else if (button.isPressed())
+                border = getResources().getBorder(getPushedTex())
+            else if (button.isHover())
+                border = getResources().getBorder(getHighlightTex())
+
+            if (border == null)
+                border = getResources().getBorder(getNormalTex())
+
+            border
+        } as Callable<Border>, resourcesProperty(),
+                normalTexProperty(), pushedTexProperty(), highlightTexProperty(),
+                button.disabledProperty(), button.hoverProperty(), button.pressedProperty()));
+    }
 
     // @formatter:off
     @Deprecated String getTexture() { normalTex }

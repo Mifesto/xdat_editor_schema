@@ -4,10 +4,18 @@ import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.transform.CompileStatic
 import groovyx.javafx.beans.FXBindable
+import javafx.beans.binding.Bindings
+import javafx.scene.layout.Background
+import javafx.scene.layout.BackgroundImage
+import javafx.scene.layout.BackgroundRepeat
+import javafx.scene.layout.BackgroundSize
+import javafx.scene.layout.Region
 
-@FXBindable
+import java.util.concurrent.Callable
+
 @DefaultIO
 @CompileStatic
+@FXBindable
 class CharacterViewportWindow extends DefaultProperty {
     float characterScale = 1f
     int characterOffsetX = -2
@@ -21,6 +29,18 @@ class CharacterViewportWindow extends DefaultProperty {
     @Tex
     String backgroundTex
     int npcID
+
+    @Override
+    void initProperties(Region component) {
+        super.initProperties(component)
+
+        component.backgroundProperty().bind(Bindings.createObjectBinding({
+            if (resources == null)
+                return null
+
+            new Background(new BackgroundImage(resources.getImage(backgroundTex), BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, null, new BackgroundSize(100, 100, true, true, true, true)))
+        } as Callable<Background>, backgroundTexProperty()))
+    }
 
     // @formatter:off
     @Deprecated float getUnk100() { return characterScale }

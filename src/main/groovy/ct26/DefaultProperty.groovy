@@ -1,13 +1,22 @@
 package ct26
 
+import acmi.l2.clientmod.l2resources.L2Context
+import acmi.l2.clientmod.l2resources.L2Resources
 import acmi.l2.clientmod.l2resources.Sysstr
+import acmi.l2.clientmod.util.ComponentFactory
+import acmi.l2.clientmod.util.Hide
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.UIEntity
 import groovyx.javafx.beans.FXBindable
+import javafx.beans.binding.Bindings
+import javafx.scene.layout.Region
 import javafx.scene.paint.Color
 
 @FXBindable
-abstract class DefaultProperty implements UIEntity {
+abstract class DefaultProperty implements UIEntity, L2Context, ComponentFactory<Region> {
+    @Hide
+    L2Resources resources
+
     String name
     String extendsName = "undefined"
     Boolean alwaysOnTop
@@ -57,6 +66,50 @@ abstract class DefaultProperty implements UIEntity {
                 new IllegalArgumentException("No ${getClass().simpleName} constant with value=$val")
             })
         }
+    }
+
+    private static Region lookupNode(Region component, String name) { null }
+
+    @Override
+    Region create() { new Region() }
+
+    @Override
+    void initProperties(Region component) {
+        component.prefWidthProperty().bind(Bindings.createDoubleBinding({
+            if (!getSize())
+                return 0d;
+            if (getSize_absolute_values()) {
+                return (double) getSize_absolute_width();
+            } else {
+                Region parent = getSize_percent_window() == null ? (Region) component.getParent()
+                        : lookupNode(component, getSize_percent_window());
+                if (parent == null)
+                    return 0d;
+                return parent.getWidth() * getSize_percent_width();
+            }
+        }, sizeProperty(),
+                size_absolute_valuesProperty(), size_absolute_widthProperty(),
+                size_percent_windowProperty(), size_percent_widthProperty()));
+        component.minWidthProperty().bind(component.prefWidthProperty());
+        component.maxWidthProperty().bind(component.prefWidthProperty());
+
+        component.prefHeightProperty().bind(Bindings.createDoubleBinding({
+            if (!getSize())
+                return 0d;
+            if (getSize_absolute_values()) {
+                return (double) getSize_absolute_height();
+            } else {
+                Region parent = getSize_percent_window() == null ? (Region) component.getParent()
+                        : lookupNode(component, getSize_percent_window());
+                if (parent == null)
+                    return 0d;
+                return parent.getHeight() * getSize_percent_height();
+            }
+        }, sizeProperty(),
+                size_absolute_valuesProperty(), size_absolute_heightProperty(),
+                size_percent_windowProperty(), size_percent_heightProperty()));
+        component.minHeightProperty().bind(component.prefHeightProperty());
+        component.maxHeightProperty().bind(component.prefHeightProperty());
     }
 
     @Override

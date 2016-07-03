@@ -1,11 +1,14 @@
 package ct26
 
+import acmi.l2.clientmod.util.ComponentFactory
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.Type
 import groovyx.javafx.beans.FXBindable
+import javafx.beans.InvalidationListener
+import javafx.scene.layout.Pane
 
 @FXBindable
-class ScrollArea extends DefaultProperty implements Iterable<DefaultProperty> {
+class ScrollArea extends DefaultProperty implements Iterable<DefaultProperty>, ComponentFactory<Pane> {
     int areaHeight
     @Type(DefaultProperty.class)
     List<DefaultProperty> children = []
@@ -13,6 +16,26 @@ class ScrollArea extends DefaultProperty implements Iterable<DefaultProperty> {
     @Override
     Iterator<DefaultProperty> iterator() {
         children.iterator()
+    }
+
+    {
+        resourcesProperty().addListener({ observable ->
+            children.each {
+                it.resources = resources
+            }
+        } as InvalidationListener)
+    }
+
+    @Override
+    Pane create() {
+        def component = new Pane()
+        component.children.addAll(children.collect { it.component })
+        component
+    }
+
+    @Override
+    void initProperties(Pane component) {
+        super.initProperties(component)
     }
 
     @Override

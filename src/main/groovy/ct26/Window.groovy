@@ -4,9 +4,11 @@ import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.*
 import groovyx.javafx.beans.FXBindable
+import javafx.beans.InvalidationListener
+import javafx.scene.layout.Pane
 
 @FXBindable
-class Window extends DefaultProperty implements Iterable<DefaultProperty> {
+class Window extends DefaultProperty implements Iterable<DefaultProperty>, ComponentFactory<Pane> {
     String parent
     @Tex
     String backTex
@@ -26,7 +28,7 @@ class Window extends DefaultProperty implements Iterable<DefaultProperty> {
     DirectionType frameDirection = DirectionType.None
     Boolean exitbutton
     Boolean draggable
-    DirectionType resizeFrameDirection = DirectionType.None
+    DirectionType resizeFrameDirection
     float resizeFrameX = -9999.0
     float resizeFrameY = -9999.0
     float resizeFrameWidth = -9999.0
@@ -87,6 +89,26 @@ class Window extends DefaultProperty implements Iterable<DefaultProperty> {
     @Override
     Iterator<DefaultProperty> iterator() {
         children.iterator()
+    }
+
+    {
+        resourcesProperty().addListener({ observable ->
+            children.each {
+                it.resources = resources
+            }
+        } as InvalidationListener)
+    }
+
+    @Override
+    Pane create() {
+        def component = new Pane()
+        component.children.addAll(children.collect { it.component })
+        component
+    }
+
+    @Override
+    void initProperties(Pane component) {
+        super.initProperties(component)
     }
 
     static class State implements IOEntity {
