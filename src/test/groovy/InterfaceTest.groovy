@@ -155,4 +155,9 @@ class InterfaceTest {
     void GrandCrusade() {
         test(etoa4.XDAT, 'interface/Interface_grand_crusade.xdat')
     }
+
+    @Test
+    void GrandCrusadeP3() {
+        test(etoa4_p3.XDAT, 'interface/Interface_grand_crusade_p3.xdat')
+    }
 }

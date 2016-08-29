@@ -141,4 +141,10 @@ class PropertiesTest {
         new etoa4.XDAT()
         test(SubclassManager.instance.getClassWithAllSubclasses(etoa4.DefaultProperty))
     }
+
+    @Test
+    void GrandCrusadeP3() {
+        new etoa4_p3.XDAT()
+        test(SubclassManager.instance.getClassWithAllSubclasses(etoa4_p3.DefaultProperty))
+    }
 }
