@@ -1,5 +1,4 @@
 rootProject.name = 'xdat_editor_schema'
 
-include ':groovyfx'
 include ':commons:io'
 include ':commons:l2resources'

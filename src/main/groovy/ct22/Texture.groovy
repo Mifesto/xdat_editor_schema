@@ -2,7 +2,6 @@ package ct22
 
 import acmi.l2.clientmod.util.Description
 import acmi.l2.clientmod.util.IOUtil
-import javafx.scene.paint.Color
 
 class Texture extends DefaultProperty {
     String file

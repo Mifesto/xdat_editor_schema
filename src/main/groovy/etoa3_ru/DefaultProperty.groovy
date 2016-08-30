@@ -3,10 +3,10 @@ package etoa3_ru
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.UIEntity
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 import javafx.scene.paint.Color
 
-@FXBindable
+@Bindable
 abstract class DefaultProperty implements UIEntity {
     String name
     String extendsName = "undefined"

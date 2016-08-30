@@ -5,9 +5,9 @@ import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.IOEntity
 import acmi.l2.clientmod.util.Type
 import acmi.l2.clientmod.util.defaultio.DefaultIO
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 class StatusBar extends DefaultProperty {
     String title
@@ -48,7 +48,7 @@ class StatusBar extends DefaultProperty {
     @Type(ScaleMark.class)
     List<ScaleMark> unk120 = []
 
-    @FXBindable
+    @Bindable
     @DefaultIO
     static class ScaleMark implements IOEntity {
         @Tex

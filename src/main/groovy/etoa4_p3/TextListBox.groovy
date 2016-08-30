@@ -2,10 +2,10 @@ package etoa4_p3
 
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
+import groovy.beans.Bindable
 import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 @CompileStatic
 class TextListBox extends DefaultProperty {

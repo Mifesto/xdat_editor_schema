@@ -4,9 +4,9 @@ import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.*
 import acmi.l2.clientmod.util.defaultio.DefaultIO
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 
-@FXBindable
+@Bindable
 class Window extends DefaultProperty implements Iterable<DefaultProperty> {
     String parent
     @Tex

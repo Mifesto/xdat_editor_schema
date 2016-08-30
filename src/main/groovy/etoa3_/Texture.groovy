@@ -1,16 +1,16 @@
 package etoa3_
 
+import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.Description
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.StringValue
-import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import acmi.l2.clientmod.util.defaultio.RGBA
+import groovy.beans.Bindable
 import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
 import javafx.scene.paint.Color
 
-@FXBindable
+@Bindable
 @DefaultIO
 @CompileStatic
 class Texture extends DefaultProperty {

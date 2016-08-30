@@ -3,10 +3,10 @@ package etoa3__
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.IntValue
 import acmi.l2.clientmod.util.defaultio.DefaultIO
+import groovy.beans.Bindable
 import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 @CompileStatic
 class EditBox extends DefaultProperty {

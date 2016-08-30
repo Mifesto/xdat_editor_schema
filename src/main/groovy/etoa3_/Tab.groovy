@@ -1,21 +1,20 @@
 package etoa3_
 
-import acmi.l2.clientmod.util.IOEntity
-import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
+import acmi.l2.clientmod.util.IOEntity
+import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.Type
 import acmi.l2.clientmod.util.defaultio.DefaultIO
-import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 class Tab extends DefaultProperty {
     @Type(TabElement.class)
     List<TabElement> tabs = []
 
-    @FXBindable
+    @Bindable
     @DefaultIO
     static class TabElement implements IOEntity {
         @Sysstr

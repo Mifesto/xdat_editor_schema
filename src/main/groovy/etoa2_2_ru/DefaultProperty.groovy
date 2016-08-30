@@ -1,7 +1,7 @@
 package etoa2_2_ru
 
-import acmi.l2.clientmod.util.UIEntity
 import acmi.l2.clientmod.util.IOUtil
+import acmi.l2.clientmod.util.UIEntity
 import javafx.scene.paint.Color
 
 abstract class DefaultProperty implements UIEntity {

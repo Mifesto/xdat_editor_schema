@@ -2,9 +2,9 @@ package ct0
 
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.UIEntity
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 
-@FXBindable
+@Bindable
 abstract class DefaultProperty implements UIEntity {
     String name
     String superName = "undefined"

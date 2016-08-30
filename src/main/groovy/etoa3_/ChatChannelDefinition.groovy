@@ -1,7 +1,6 @@
 package etoa3_
 
 import acmi.l2.clientmod.util.IOEntity
-import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.transform.CompileStatic
 import javafx.scene.paint.Color

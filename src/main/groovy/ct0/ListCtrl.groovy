@@ -4,9 +4,9 @@ import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.util.IOEntity
 import acmi.l2.clientmod.util.Type
 import acmi.l2.clientmod.util.defaultio.DefaultIO
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 class ListCtrl extends DefaultProperty {
     int unk100
@@ -17,7 +17,7 @@ class ListCtrl extends DefaultProperty {
     @Type(ListElement.class)
     List<ListElement> values = []
 
-    @FXBindable
+    @Bindable
     @DefaultIO
     static class ListElement implements IOEntity {
         @Sysstr

@@ -3,11 +3,11 @@ package ct0
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.defaultio.DefaultIO
+import groovy.beans.Bindable
 import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
 import javafx.scene.paint.Color
 
-@FXBindable
+@Bindable
 @DefaultIO
 @CompileStatic
 class TextBox extends DefaultProperty {

@@ -1,13 +1,12 @@
 package etoa3_
 
-import acmi.l2.clientmod.util.IOEntity
 import acmi.l2.clientmod.l2resources.Tex
+import acmi.l2.clientmod.util.IOEntity
 import acmi.l2.clientmod.util.Type
 import acmi.l2.clientmod.util.defaultio.DefaultIO
-import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
+import groovy.beans.Bindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 class RadarMapCtrl extends DefaultProperty {
 	String mapTextureName
@@ -15,7 +14,7 @@ class RadarMapCtrl extends DefaultProperty {
 	@Type(RadarMapCtrlObjectType.class)
     List<RadarMapCtrlObjectType> radarMapCtrlObjectType = []
 
-	@FXBindable
+	@Bindable
     @DefaultIO
 	static class RadarMapCtrlObjectType implements IOEntity {
 		String typeName

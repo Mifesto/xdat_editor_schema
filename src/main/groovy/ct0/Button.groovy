@@ -4,10 +4,10 @@ import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.Description
 import acmi.l2.clientmod.util.defaultio.DefaultIO
+import groovy.beans.Bindable
 import groovy.transform.CompileStatic
-import groovyx.javafx.beans.FXBindable
 
-@FXBindable
+@Bindable
 @DefaultIO
 @CompileStatic
 class Button extends DefaultProperty {
