@@ -6,13 +6,13 @@ import javafx.scene.paint.Color
 
 abstract class DefaultProperty implements UIEntity {
     String name
-    String superName = "undefined"
+    String superName = 'undefined'
     int unk2 = -1
     int unk3 = -1
     int unk31 = -1
     String unk4
-    String unk5 = "undefined"
-    String unk6 = "undefined"
+    String unk5 = 'undefined'
+    String unk6 = 'undefined'
     int unk7 = -1
     int unk8 = -1
     boolean size = false
@@ -28,13 +28,13 @@ abstract class DefaultProperty implements UIEntity {
     float anchor_x
     float anchor_y
     boolean useFont = false
-    String text_font_1 = "undefined"
-    String text_font_2 = "undefined"
+    String text_font_1 = 'undefined'
+    String text_font_2 = 'undefined'
     Color text_color = new Color(0.0, 0.0, 0.0, 0.0)
     int text_unk_const_zero = 0
     int unk23 = -1
     int unk24 = 0
-    String popupType = "undefined"
+    String popupType = 'undefined'
     int popupValue = -9999
     int unk27 = -9999
     int unk28 = -9999
@@ -147,6 +147,6 @@ abstract class DefaultProperty implements UIEntity {
 
     @Override
     String toString() {
-        name + "[" + getClass().simpleName + "]"
+        "$name[${getClass().simpleName}]"
     }
 }

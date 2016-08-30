@@ -3,9 +3,12 @@ package ct26
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.*
+import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
+import groovy.transform.CompileStatic
 
 @Bindable
+@CompileStatic
 class Window extends DefaultProperty implements Iterable<DefaultProperty> {
     String parent
     @Tex
@@ -89,28 +92,13 @@ class Window extends DefaultProperty implements Iterable<DefaultProperty> {
         children.iterator()
     }
 
+    @DefaultIO
     static class State implements IOEntity {
         String unk148
 
         @Override
-        State read(InputStream input) {
-            use(IOUtil) {
-                unk148 = input.readString()
-            }
-            this
-        }
-
-        @Override
-        State write(OutputStream output) {
-            use(IOUtil) {
-                output.writeString(unk148)
-            }
-            this
-        }
-
-        @Override
         String toString() {
-            return State.class.simpleName
+            State.class.simpleName
         }
     }
 
@@ -174,74 +162,72 @@ class Window extends DefaultProperty implements Iterable<DefaultProperty> {
     Window read(InputStream input) {
         super.read(input)
 
-        use(IOUtil) {
-            parent = input.readString()
-            backTex = input.readString()
-            script = input.readString()
-            state = input.readString()
-            frame = input.readBoolean()
-            iconable = input.readBoolean()
-            stuckable = input.readBoolean()
-            hidden = input.readBoolean()
-            alwaysFullAlpha = input.readBoolean()
-            savePosition = input.readBoolean()
-            saveSize = input.readBoolean()
-            title = input.readInt()
-            resizeFrame = input.readBoolean()
-            frameSize = input.readEnum(FrameSizeType)
-            frameDirection = input.readEnum(DirectionType)
-            exitbutton = input.readBoolean()
-            draggable = input.readBoolean()
-            resizeFrameDirection = input.readEnum(DirectionType)
-            resizeFrameX = input.readFloat()
-            resizeFrameY = input.readFloat()
-            resizeFrameWidth = input.readFloat()
-            resizeFrameHeight = input.readFloat()
-            resizeMaxIncrease = input.readInt()
-            drawerDirection = input.readEnum(DirectionType)
-            if (drawerDirection.ordinal() > 0) {
-                offsetX = input.readInt()
-                offsetY = input.readInt()
-                directionFixed = input.readBoolean()
-            } else {
-                notUsed01 = input.readInt()
-                notUsed02 = input.readInt()
-                notUsed03 = input.readInt()
-            }
-            ownerWindow = input.readString()
-            showAnimType = input.readEnum(AnimType)
-            hideAnimType = input.readEnum(AnimType)
-            if (showAnimType.intValue() > 0) {
-                showAnimDirection = input.readEnum(DirectionType)
-                showAnimSeconds = input.readFloat()
-            } else {
-                notUsed11 = input.readInt()
-                notUsed12 = input.readInt()
-            }
-            if (hideAnimType.intValue() > 0) {
-                hideAnimDirection = input.readEnum(DirectionType)
-                hideAnimSeconds = input.readFloat()
-            } else {
-                notUsed13 = input.readInt()
-                notUsed14 = input.readInt()
-            }
-            iconName = input.readString()
-            tooltipIdx = input.readInt()
-            hookKeyInput = input.readBoolean()
-            workingConfiguration = input.readString()
-            leftTextureName = input.readString()
-            midTextureName = input.readString()
-            rightTextureName = input.readString()
-            minimizeBtnTextureNormal = input.readString()
-            minimizeBtnTexturePushed = input.readString()
-            closeBtnTextureNormal = input.readString()
-            closeBtnTexturePushed = input.readString()
-            leftBackTextureWidth = input.readInt()
-            midBackTextureWidth = input.readInt()
-            additionalState = input.readList(State, ArrayLength.COMPACT_INT)
-            useParentClipRect = input.readBoolean()
-            children = input.readList(DefaultProperty)
+        parent = input.readString()
+        backTex = input.readString()
+        script = input.readString()
+        state = input.readString()
+        frame = input.readBoolean()
+        iconable = input.readBoolean()
+        stuckable = input.readBoolean()
+        hidden = input.readBoolean()
+        alwaysFullAlpha = input.readBoolean()
+        savePosition = input.readBoolean()
+        saveSize = input.readBoolean()
+        title = input.readInt()
+        resizeFrame = input.readBoolean()
+        frameSize = input.readEnum(FrameSizeType)
+        frameDirection = input.readEnum(DirectionType)
+        exitbutton = input.readBoolean()
+        draggable = input.readBoolean()
+        resizeFrameDirection = input.readEnum(DirectionType)
+        resizeFrameX = input.readFloat()
+        resizeFrameY = input.readFloat()
+        resizeFrameWidth = input.readFloat()
+        resizeFrameHeight = input.readFloat()
+        resizeMaxIncrease = input.readInt()
+        drawerDirection = input.readEnum(DirectionType)
+        if (drawerDirection.ordinal() > 0) {
+            offsetX = input.readInt()
+            offsetY = input.readInt()
+            directionFixed = input.readBoolean()
+        } else {
+            notUsed01 = input.readInt()
+            notUsed02 = input.readInt()
+            notUsed03 = input.readInt()
         }
+        ownerWindow = input.readString()
+        showAnimType = input.readEnum(AnimType)
+        hideAnimType = input.readEnum(AnimType)
+        if (showAnimType.intValue() > 0) {
+            showAnimDirection = input.readEnum(DirectionType)
+            showAnimSeconds = input.readFloat()
+        } else {
+            notUsed11 = input.readInt()
+            notUsed12 = input.readInt()
+        }
+        if (hideAnimType.intValue() > 0) {
+            hideAnimDirection = input.readEnum(DirectionType)
+            hideAnimSeconds = input.readFloat()
+        } else {
+            notUsed13 = input.readInt()
+            notUsed14 = input.readInt()
+        }
+        iconName = input.readString()
+        tooltipIdx = input.readInt()
+        hookKeyInput = input.readBoolean()
+        workingConfiguration = input.readString()
+        leftTextureName = input.readString()
+        midTextureName = input.readString()
+        rightTextureName = input.readString()
+        minimizeBtnTextureNormal = input.readString()
+        minimizeBtnTexturePushed = input.readString()
+        closeBtnTextureNormal = input.readString()
+        closeBtnTexturePushed = input.readString()
+        leftBackTextureWidth = input.readInt()
+        midBackTextureWidth = input.readInt()
+        additionalState = input.readList(State, ArrayLength.COMPACT_INT)
+        useParentClipRect = input.readBoolean()
+        children = input.readList(DefaultProperty)
 
         this
     }
@@ -250,74 +236,72 @@ class Window extends DefaultProperty implements Iterable<DefaultProperty> {
     Window write(OutputStream output) {
         super.write(output)
 
-        use(IOUtil) {
-            output.writeString(parent)
-            output.writeString(backTex)
-            output.writeString(script)
-            output.writeString(state)
-            output.writeBoolean(frame)
-            output.writeBoolean(iconable)
-            output.writeBoolean(stuckable)
-            output.writeBoolean(hidden)
-            output.writeBoolean(alwaysFullAlpha)
-            output.writeBoolean(savePosition)
-            output.writeBoolean(saveSize)
-            output.writeInt(title)
-            output.writeBoolean(resizeFrame)
-            output.writeEnum(frameSize)
-            output.writeEnum(frameDirection)
-            output.writeBoolean(exitbutton)
-            output.writeBoolean(draggable)
-            output.writeEnum(resizeFrameDirection)
-            output.writeFloat(resizeFrameX)
-            output.writeFloat(resizeFrameY)
-            output.writeFloat(resizeFrameWidth)
-            output.writeFloat(resizeFrameHeight)
-            output.writeInt(resizeMaxIncrease)
-            output.writeEnum(drawerDirection)
-            if (drawerDirection.ordinal() > 0) {
-                output.writeInt(offsetX)
-                output.writeInt(offsetY)
-                output.writeBoolean(directionFixed)
-            } else {
-                output.writeInt(notUsed01)
-                output.writeInt(notUsed02)
-                output.writeInt(notUsed03)
-            }
-            output.writeString(ownerWindow)
-            output.writeEnum(showAnimType)
-            output.writeEnum(hideAnimType)
-            if (showAnimType.intValue() > 0) {
-                output.writeEnum(showAnimDirection)
-                output.writeFloat(showAnimSeconds)
-            } else {
-                output.writeInt(notUsed11)
-                output.writeInt(notUsed12)
-            }
-            if (hideAnimType.intValue() > 0) {
-                output.writeEnum(hideAnimDirection)
-                output.writeFloat(hideAnimSeconds)
-            } else {
-                output.writeInt(notUsed13)
-                output.writeInt(notUsed14)
-            }
-            output.writeString(iconName)
-            output.writeInt(tooltipIdx)
-            output.writeBoolean(hookKeyInput)
-            output.writeString(workingConfiguration)
-            output.writeString(leftTextureName)
-            output.writeString(midTextureName)
-            output.writeString(rightTextureName)
-            output.writeString(minimizeBtnTextureNormal)
-            output.writeString(minimizeBtnTexturePushed)
-            output.writeString(closeBtnTextureNormal)
-            output.writeString(closeBtnTexturePushed)
-            output.writeInt(leftBackTextureWidth)
-            output.writeInt(midBackTextureWidth)
-            output.writeList(additionalState, ArrayLength.COMPACT_INT)
-            output.writeBoolean(useParentClipRect)
-            output.writeList(children)
+        output.writeString(parent)
+        output.writeString(backTex)
+        output.writeString(script)
+        output.writeString(state)
+        output.writeBoolean(frame)
+        output.writeBoolean(iconable)
+        output.writeBoolean(stuckable)
+        output.writeBoolean(hidden)
+        output.writeBoolean(alwaysFullAlpha)
+        output.writeBoolean(savePosition)
+        output.writeBoolean(saveSize)
+        output.writeInt(title)
+        output.writeBoolean(resizeFrame)
+        output.writeEnum(frameSize)
+        output.writeEnum(frameDirection)
+        output.writeBoolean(exitbutton)
+        output.writeBoolean(draggable)
+        output.writeEnum(resizeFrameDirection)
+        output.writeFloat(resizeFrameX)
+        output.writeFloat(resizeFrameY)
+        output.writeFloat(resizeFrameWidth)
+        output.writeFloat(resizeFrameHeight)
+        output.writeInt(resizeMaxIncrease)
+        output.writeEnum(drawerDirection)
+        if (drawerDirection.ordinal() > 0) {
+            output.writeInt(offsetX)
+            output.writeInt(offsetY)
+            output.writeBoolean(directionFixed)
+        } else {
+            output.writeInt(notUsed01)
+            output.writeInt(notUsed02)
+            output.writeInt(notUsed03)
         }
+        output.writeString(ownerWindow)
+        output.writeEnum(showAnimType)
+        output.writeEnum(hideAnimType)
+        if (showAnimType.intValue() > 0) {
+            output.writeEnum(showAnimDirection)
+            output.writeFloat(showAnimSeconds)
+        } else {
+            output.writeInt(notUsed11)
+            output.writeInt(notUsed12)
+        }
+        if (hideAnimType.intValue() > 0) {
+            output.writeEnum(hideAnimDirection)
+            output.writeFloat(hideAnimSeconds)
+        } else {
+            output.writeInt(notUsed13)
+            output.writeInt(notUsed14)
+        }
+        output.writeString(iconName)
+        output.writeInt(tooltipIdx)
+        output.writeBoolean(hookKeyInput)
+        output.writeString(workingConfiguration)
+        output.writeString(leftTextureName)
+        output.writeString(midTextureName)
+        output.writeString(rightTextureName)
+        output.writeString(minimizeBtnTextureNormal)
+        output.writeString(minimizeBtnTexturePushed)
+        output.writeString(closeBtnTextureNormal)
+        output.writeString(closeBtnTexturePushed)
+        output.writeInt(leftBackTextureWidth)
+        output.writeInt(midBackTextureWidth)
+        output.writeList(additionalState, ArrayLength.COMPACT_INT)
+        output.writeBoolean(useParentClipRect)
+        output.writeList(children)
 
         this
     }

@@ -2,12 +2,13 @@ package etoa3__
 
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.IOEntity
-import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.Type
 import acmi.l2.clientmod.util.defaultio.DefaultIO
+import groovy.transform.CompileStatic
 import javafx.scene.paint.Color
 
 @DefaultIO
+@CompileStatic
 class HeadDisplayDefinition implements IOEntity {
     @Type(HeadDisplayElement.class)
     List<HeadDisplayElement> headDisplayElements = []
@@ -36,38 +37,34 @@ class HeadDisplayDefinition implements IOEntity {
 
             @Override
             Element read(InputStream input) throws IOException {
-                use(IOUtil) {
-                    reserved = input.readInt()
-                    drawType = input.readEnum(DrawType)
-                    if (drawType == DrawType.ImageType) {
-                        texName = input.readString()
-                        u1 = input.readInt()
-                        v1 = input.readInt()
-                        u2 = input.readInt()
-                        v2 = input.readInt()
-                    } else {
-                        systemMsg = input.readInt()
-                        color = input.readColor()
-                    }
+                reserved = input.readInt()
+                drawType = input.readEnum(DrawType)
+                if (drawType == DrawType.ImageType) {
+                    texName = input.readString()
+                    u1 = input.readInt()
+                    v1 = input.readInt()
+                    u2 = input.readInt()
+                    v2 = input.readInt()
+                } else {
+                    systemMsg = input.readInt()
+                    color = input.readColor()
                 }
                 this
             }
 
             @Override
             Element write(OutputStream output) throws IOException {
-                use(IOUtil) {
-                    output.writeInt(reserved)
-                    output.writeEnum(drawType)
-                    if (drawType == DrawType.ImageType) {
-                        output.writeString(texName)
-                        output.writeInt(u1)
-                        output.writeInt(v1)
-                        output.writeInt(u2)
-                        output.writeInt(v2)
-                    } else {
-                        output.writeInt(systemMsg)
-                        output.writeColor(color)
-                    }
+                output.writeInt(reserved)
+                output.writeEnum(drawType)
+                if (drawType == DrawType.ImageType) {
+                    output.writeString(texName)
+                    output.writeInt(u1)
+                    output.writeInt(v1)
+                    output.writeInt(u2)
+                    output.writeInt(v2)
+                } else {
+                    output.writeInt(systemMsg)
+                    output.writeColor(color)
                 }
                 this
             }

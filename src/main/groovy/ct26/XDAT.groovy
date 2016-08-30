@@ -22,7 +22,6 @@ class XDAT implements IOEntity {
 
     @Override
     XDAT read(InputStream input) {
-        use(IOUtil) {
             shortcuts = input.readList(Shortcut)
             int count = input.readInt()
             for (int i = 0; i < count; i++)
@@ -38,14 +37,12 @@ class XDAT implements IOEntity {
                 tail = tmp
             } catch (EOFException ignore) {
             }
-        }
 
         this
     }
 
     @Override
     XDAT write(OutputStream output) {
-        use(IOUtil) {
             output.writeList(shortcuts)
             output.writeInt(windows.size())
             for (Window window : windows)
@@ -57,7 +54,6 @@ class XDAT implements IOEntity {
             output.writeList(chatChannel)
             if (tail != null)
                 output.write(tail)
-        }
 
         this
     }

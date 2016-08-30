@@ -16,23 +16,21 @@ class XDAT implements IOEntity {
 
     @Override
     IOEntity read(InputStream input) throws IOException {
-        use(IOUtil) {
-            int count = input.readInt()
-            for (int i = 0; i < count; i++)
-                windows.add(new Window().read(input))
-            count = input.readInt()
-            for (int i = 0; i < count; i++)
-                shortcuts.add(new Shortcut().read(input))
-            input.readInt()
-            count = input.readInt()
-            for (int i = 0; i < count; i++)
-                wndDefPos.add(new WndDefPos().read(input))
-            try {
-                byte[] tmp = new byte[20]
-                new DataInputStream(input).readFully(tmp)
-                tail = tmp
-            } catch (EOFException ignore) {
-            }
+        int count = input.readInt()
+        for (int i = 0; i < count; i++)
+            windows.add(new Window().read(input))
+        count = input.readInt()
+        for (int i = 0; i < count; i++)
+            shortcuts.add(new Shortcut().read(input))
+        input.readInt()
+        count = input.readInt()
+        for (int i = 0; i < count; i++)
+            wndDefPos.add(new WndDefPos().read(input))
+        try {
+            byte[] tmp = new byte[20]
+            new DataInputStream(input).readFully(tmp)
+            tail = tmp
+        } catch (EOFException ignore) {
         }
 
         this
@@ -40,20 +38,18 @@ class XDAT implements IOEntity {
 
     @Override
     IOEntity write(OutputStream output) throws IOException {
-        use(IOUtil) {
-            output.writeInt(windows.size())
-            for (Window window : windows)
-                window.write(output)
-            output.writeInt(shortcuts.size())
-            for (Shortcut shortcut : shortcuts)
-                shortcut.write(output)
-            output.writeInt(1)
-            output.writeInt(wndDefPos.size())
-            for (WndDefPos unk11 : wndDefPos)
-                unk11.write(output)
-            if (tail != null)
-                output.write(tail)
-        }
+        output.writeInt(windows.size())
+        for (Window window : windows)
+            window.write(output)
+        output.writeInt(shortcuts.size())
+        for (Shortcut shortcut : shortcuts)
+            shortcut.write(output)
+        output.writeInt(1)
+        output.writeInt(wndDefPos.size())
+        for (WndDefPos unk11 : wndDefPos)
+            unk11.write(output)
+        if (tail != null)
+            output.write(tail)
         this
     }
 

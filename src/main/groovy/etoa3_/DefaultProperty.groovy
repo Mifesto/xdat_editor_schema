@@ -4,18 +4,20 @@ import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.UIEntity
 import groovy.beans.Bindable
+import groovy.transform.CompileStatic
 import javafx.scene.paint.Color
 
 @Bindable
+@CompileStatic
 abstract class DefaultProperty implements UIEntity {
     String name
-    String extendsName = "undefined"
+    String extendsName = 'undefined'
     Boolean alwaysOnTop
     Boolean alwaysOnBack
     Boolean equalToParentSize
     String parentName
-    String preOrder = "undefined"
-    String postOrder = "undefined"
+    String preOrder = 'undefined'
+    String postOrder = 'undefined'
     Boolean anchored
     Boolean relativeDrag
     Boolean superChild
@@ -33,13 +35,13 @@ abstract class DefaultProperty implements UIEntity {
     float anchor_x
     float anchor_y
     boolean useFont = false
-    String styleName = "undefined"
-    String fontName = "undefined"
+    String styleName = 'undefined'
+    String fontName = 'undefined'
     Color fontColor = new Color(0.0, 0.0, 0.0, 0.0)
     FontLineType fontLine = FontLineType.EMPTY
     Boolean virtual
     int unk24 = 0
-    String tooltipType = "undefined"
+    String tooltipType = 'undefined'
     @Sysstr
     int tooltipText = -9999
     int tooltipAppearanceTime = -9999
@@ -53,123 +55,122 @@ abstract class DefaultProperty implements UIEntity {
         UNDERLINE,
         LINE_THROUGH
 
-        static FontLineType valueOf(int val){
+        static FontLineType valueOf(int val) {
             Optional.ofNullable(values().find { it.ordinal() == val })
-                    .orElseThrow({ new IllegalArgumentException("No ${getClass().simpleName} constant with value=$val") })
+                    .orElseThrow({
+                new IllegalArgumentException("No ${getClass().simpleName} constant with value=$val")
+            })
         }
     }
 
     @Override
     DefaultProperty read(InputStream input) {
-        use(IOUtil) {
-            name = input.readString()
-            extendsName = input.readString()
-            alwaysOnTop = input.readBoolean()
-            alwaysOnBack = input.readBoolean()
-            equalToParentSize = input.readBoolean()
-            parentName = input.readString()
-            preOrder = input.readString()
-            postOrder = input.readString()
-            anchored = input.readBoolean()
-            relativeDrag = input.readBoolean()
-            superChild = input.readBoolean()
-            size = input.readBoolean()
-            if (size) {
-                size_absolute_values = input.readBoolean()
-                if (!size_absolute_values) {
-                    size_percent_window = input.readString()
-                    size_percent_width = input.readFloat()
-                    size_percent_height = input.readFloat()
-                }
-                size_absolute_width = input.readInt()
-                size_absolute_height = input.readInt()
+        name = input.readString()
+        extendsName = input.readString()
+        alwaysOnTop = input.readBoolean()
+        alwaysOnBack = input.readBoolean()
+        equalToParentSize = input.readBoolean()
+        parentName = input.readString()
+        preOrder = input.readString()
+        postOrder = input.readString()
+        anchored = input.readBoolean()
+        relativeDrag = input.readBoolean()
+        superChild = input.readBoolean()
+        size = input.readBoolean()
+        if (size) {
+            size_absolute_values = input.readBoolean()
+            if (!size_absolute_values) {
+                size_percent_window = input.readString()
+                size_percent_width = input.readFloat()
+                size_percent_height = input.readFloat()
             }
-            usePosition = input.readBoolean()
-            if (usePosition) {
-                relativePoint = input.readEnum(Alignment)
-                anchorPoint = input.readEnum(Alignment)
-                relativeTo = input.readString()
-                anchor_x = input.readFloat()
-                anchor_y = input.readFloat()
-            }
-            useFont = input.readBoolean()
-            if (useFont) {
-                styleName = input.readString()
-                fontName = input.readString()
-                fontColor = input.readColor()
-                fontLine = input.readEnum(FontLineType)
-            }
-            virtual = input.readBoolean()
-            unk24 = input.readInt()
-            tooltipType = input.readString()
-            tooltipText = input.readInt()
-            tooltipAppearanceTime = input.readInt()
-            scrollBarOffsetX = input.readInt()
-            scrollBarOffsetY = input.readInt()
-            scrollBarOffsetHeight = input.readInt()
+            size_absolute_width = input.readInt()
+            size_absolute_height = input.readInt()
         }
+        usePosition = input.readBoolean()
+        if (usePosition) {
+            relativePoint = input.readEnum(Alignment)
+            anchorPoint = input.readEnum(Alignment)
+            relativeTo = input.readString()
+            anchor_x = input.readFloat()
+            anchor_y = input.readFloat()
+        }
+        useFont = input.readBoolean()
+        if (useFont) {
+            styleName = input.readString()
+            fontName = input.readString()
+            fontColor = input.readColor()
+            fontLine = input.readEnum(FontLineType)
+        }
+        virtual = input.readBoolean()
+        unk24 = input.readInt()
+        tooltipType = input.readString()
+        tooltipText = input.readInt()
+        tooltipAppearanceTime = input.readInt()
+        scrollBarOffsetX = input.readInt()
+        scrollBarOffsetY = input.readInt()
+        scrollBarOffsetHeight = input.readInt()
 
         this
     }
 
     @Override
     DefaultProperty write(OutputStream output) {
-        use(IOUtil) {
-            output.writeString(name)
-            output.writeString(extendsName)
-            output.writeBoolean(alwaysOnTop)
-            output.writeBoolean(alwaysOnBack)
-            output.writeBoolean(equalToParentSize)
-            output.writeString(parentName)
-            output.writeString(preOrder)
-            output.writeString(postOrder)
-            output.writeBoolean(anchored)
-            output.writeBoolean(relativeDrag)
-            output.writeBoolean(superChild)
-            output.writeBoolean(size)
-            if (size) {
-                output.writeBoolean(size_absolute_values)
-                if (!size_absolute_values) {
-                    output.writeString(size_percent_window)
-                    output.writeFloat(size_percent_width)
-                    output.writeFloat(size_percent_height)
-                }
-                output.writeInt(size_absolute_width)
-                output.writeInt(size_absolute_height)
+        output.writeString(name)
+        output.writeString(extendsName)
+        output.writeBoolean(alwaysOnTop)
+        output.writeBoolean(alwaysOnBack)
+        output.writeBoolean(equalToParentSize)
+        output.writeString(parentName)
+        output.writeString(preOrder)
+        output.writeString(postOrder)
+        output.writeBoolean(anchored)
+        output.writeBoolean(relativeDrag)
+        output.writeBoolean(superChild)
+        output.writeBoolean(size)
+        if (size) {
+            output.writeBoolean(size_absolute_values)
+            if (!size_absolute_values) {
+                output.writeString(size_percent_window)
+                output.writeFloat(size_percent_width)
+                output.writeFloat(size_percent_height)
             }
-            output.writeBoolean(usePosition)
-            if (usePosition) {
-                output.writeEnum(relativePoint)
-                output.writeEnum(anchorPoint)
-                output.writeString(relativeTo)
-                output.writeFloat(anchor_x)
-                output.writeFloat(anchor_y)
-            }
-            output.writeBoolean(useFont)
-            if (useFont) {
-                output.writeString(styleName)
-                output.writeString(fontName)
-                output.writeColor(fontColor)
-                output.writeEnum(fontLine)
-            }
-            output.writeBoolean(virtual)
-            output.writeInt(unk24)
-            output.writeString(tooltipType)
-            output.writeInt(tooltipText)
-            output.writeInt(tooltipAppearanceTime)
-            output.writeInt(scrollBarOffsetX)
-            output.writeInt(scrollBarOffsetY)
-            output.writeInt(scrollBarOffsetHeight)
+            output.writeInt(size_absolute_width)
+            output.writeInt(size_absolute_height)
         }
+        output.writeBoolean(usePosition)
+        if (usePosition) {
+            output.writeEnum(relativePoint)
+            output.writeEnum(anchorPoint)
+            output.writeString(relativeTo)
+            output.writeFloat(anchor_x)
+            output.writeFloat(anchor_y)
+        }
+        output.writeBoolean(useFont)
+        if (useFont) {
+            output.writeString(styleName)
+            output.writeString(fontName)
+            output.writeColor(fontColor)
+            output.writeEnum(fontLine)
+        }
+        output.writeBoolean(virtual)
+        output.writeInt(unk24)
+        output.writeString(tooltipType)
+        output.writeInt(tooltipText)
+        output.writeInt(tooltipAppearanceTime)
+        output.writeInt(scrollBarOffsetX)
+        output.writeInt(scrollBarOffsetY)
+        output.writeInt(scrollBarOffsetHeight)
 
         this
     }
 
     @Override
     String toString() {
-        name + "[" + getClass().simpleName + "]"
+        "$name[${getClass().simpleName}]"
     }
 
+    // @formatter:off
     @Deprecated String getSuperName() { extendsName }
     @Deprecated void setSuperName(String superName) { this.extendsName = superName }
 
@@ -244,4 +245,5 @@ abstract class DefaultProperty implements UIEntity {
 
     @Deprecated int getUnk30() { scrollBarOffsetHeight }
     @Deprecated void setUnk30(int unk30) { this.scrollBarOffsetHeight = unk30 }
+    // @formatter:on
 }

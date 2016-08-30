@@ -20,21 +20,19 @@ class XDAT implements IOEntity {
 
     @Override
     XDAT read(InputStream input) {
-        use(IOUtil) {
-            int count = input.readInt()
-            for (int i = 0; i < count; i++)
-                windows.add(new Window().read(input))
-            shortcuts = input.readList(Shortcut)
-            input.readInt()
-            wndDefPos = input.readList(WndDefPos)
-            fonts = input.readList(Font)
-            styles = input.readList(Style)
-            try {
-                byte[] tmp = new byte[20]
-                new DataInputStream(input).readFully(tmp)
-                tail = tmp
-            } catch (EOFException ignore) {
-            }
+        int count = input.readInt()
+        for (int i = 0; i < count; i++)
+            windows.add(new Window().read(input))
+        shortcuts = input.readList(Shortcut)
+        input.readInt()
+        wndDefPos = input.readList(WndDefPos)
+        fonts = input.readList(Font)
+        styles = input.readList(Style)
+        try {
+            byte[] tmp = new byte[20]
+            new DataInputStream(input).readFully(tmp)
+            tail = tmp
+        } catch (EOFException ignore) {
         }
 
         this
@@ -42,18 +40,16 @@ class XDAT implements IOEntity {
 
     @Override
     XDAT write(OutputStream output) {
-        use(IOUtil) {
-            output.writeInt(windows.size())
-            for (Window window : windows)
-                output.writeIOEntity(window)
-            output.writeList(shortcuts)
-            output.writeInt(1)
-            output.writeList(wndDefPos)
-            output.writeList(fonts)
-            output.writeList(styles)
-            if (tail != null)
-                output.write(tail)
-        }
+        output.writeInt(windows.size())
+        for (Window window : windows)
+            output.writeIOEntity(window)
+        output.writeList(shortcuts)
+        output.writeInt(1)
+        output.writeList(wndDefPos)
+        output.writeList(fonts)
+        output.writeList(styles)
+        if (tail != null)
+            output.write(tail)
 
         this
     }

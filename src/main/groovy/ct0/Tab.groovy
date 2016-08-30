@@ -18,13 +18,13 @@ class Tab extends DefaultProperty {
     static class TabElement implements IOEntity {
         @Sysstr
         int buttonName = -9999
-        String target = "undefined"
+        String target = 'undefined'
         int width
         int height
         @Tex
-        String normalTex = "undefined"
+        String normalTex = 'undefined'
         @Tex
-        String pushedTex = "undefined"
+        String pushedTex = 'undefined'
         boolean movable
         int gap
         @Sysstr

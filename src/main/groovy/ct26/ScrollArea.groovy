@@ -1,10 +1,11 @@
 package ct26
 
-import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.Type
 import groovy.beans.Bindable
+import groovy.transform.CompileStatic
 
 @Bindable
+@CompileStatic
 class ScrollArea extends DefaultProperty implements Iterable<DefaultProperty> {
     int areaHeight
     @Type(DefaultProperty.class)
@@ -19,10 +20,8 @@ class ScrollArea extends DefaultProperty implements Iterable<DefaultProperty> {
     ScrollArea read(InputStream input) {
         super.read(input)
 
-        use(IOUtil) {
             areaHeight = input.readInt()
             children = input.readList(DefaultProperty)
-        }
 
         this
     }
@@ -31,12 +30,10 @@ class ScrollArea extends DefaultProperty implements Iterable<DefaultProperty> {
     ScrollArea write(OutputStream output) {
         super.write(output)
 
-        use(IOUtil) {
             output.writeInt(areaHeight)
             output.writeInt(children.size())
             for (DefaultProperty child : children)
                 output.writeUIEntity(child)
-        }
 
         this
     }

@@ -1,7 +1,6 @@
 package etoa3_ru
 
 import acmi.l2.clientmod.util.IOEntity
-import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.SubclassManager
 import acmi.l2.clientmod.util.Type
 
@@ -23,36 +22,32 @@ class XDAT implements IOEntity {
 
     @Override
     XDAT read(InputStream input) {
-        use(IOUtil) {
-            shortcuts = input.readList(Shortcut)
-            int count = input.readInt()
-            for (int i = 0; i < count; i++)
-                windows.add(new Window().read(input))
-            input.readInt()
-            wndDefPos = input.readList(WndDefPos)
-            fonts = input.readList(Font)
-            styles = input.readList(Style)
-            chatChannel = input.readList(ChatChannelDefinition)
-            headDisplay[0] = input.readIOEntity(HeadDisplayDefinition.class)
-        }
+        shortcuts = input.readList(Shortcut)
+        int count = input.readInt()
+        for (int i = 0; i < count; i++)
+            windows.add(new Window().read(input))
+        input.readInt()
+        wndDefPos = input.readList(WndDefPos)
+        fonts = input.readList(Font)
+        styles = input.readList(Style)
+        chatChannel = input.readList(ChatChannelDefinition)
+        headDisplay[0] = input.readIOEntity(HeadDisplayDefinition.class)
 
         this
     }
 
     @Override
     XDAT write(OutputStream output) {
-        use(IOUtil) {
-            output.writeList(shortcuts)
-            output.writeInt(windows.size())
-            for (Window window : windows)
-                output.writeIOEntity(window)
-            output.writeInt(1)
-            output.writeList(wndDefPos)
-            output.writeList(fonts)
-            output.writeList(styles)
-            output.writeList(chatChannel)
-            output.writeIOEntity(headDisplay[0])
-        }
+        output.writeList(shortcuts)
+        output.writeInt(windows.size())
+        for (Window window : windows)
+            output.writeIOEntity(window)
+        output.writeInt(1)
+        output.writeList(wndDefPos)
+        output.writeList(fonts)
+        output.writeList(styles)
+        output.writeList(chatChannel)
+        output.writeIOEntity(headDisplay[0])
 
         this
     }
@@ -94,7 +89,6 @@ class XDAT implements IOEntity {
         SubclassManager.instance.registerClass(TextListBox.class)
         SubclassManager.instance.registerClass(Texture.class)
         SubclassManager.instance.registerClass(TreeCtrl.class)
-        SubclassManager.instance.registerClass(WebBrowserWnd.class)
         SubclassManager.instance.registerClass(Window.class)
     }
 }
