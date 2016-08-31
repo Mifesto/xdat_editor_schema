@@ -8,7 +8,7 @@ import groovy.transform.CompileStatic
 @DefaultIO
 @CompileStatic
 class ShortcutItemWindow extends DefaultProperty {
-    boolean alwaysShowOutline
+    Boolean alwaysShowOutline = false
 
     // @formatter:off
     @Deprecated boolean getUnk100() { alwaysShowOutline }

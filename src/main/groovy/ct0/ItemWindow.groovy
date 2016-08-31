@@ -1,6 +1,7 @@
 package ct0
 
 import acmi.l2.clientmod.l2resources.Tex
+import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
 import groovy.transform.CompileStatic
@@ -30,11 +31,11 @@ class ItemWindow extends DefaultProperty {
     int unselectedItemHeight = -9999
     @Tex
     String unselectedItemTex = 'undefined'
-    int noSelectItem = -1
-    int noItemDrag = -1
-    int buttonClick = -1
-    int useCoolTime = -1
-    int noScroll = -1
+    Boolean noSelectItem
+    Boolean noItemDrag
+    Boolean buttonClick
+    Boolean useCoolTime
+    Boolean noScroll
     @Tex
     String outLineUp = 'l2ui_ch3.InventoryWnd.inventory_outline'
     @Tex
@@ -95,20 +96,20 @@ class ItemWindow extends DefaultProperty {
     @Deprecated String getUnk118() { unselectedItemTex }
     @Deprecated void setUnk118(String unk118) { this.unselectedItemTex = unk118 }
 
-    @Deprecated int getUnk122() { noSelectItem }
-    @Deprecated void setUnk122(int unk122) { this.noSelectItem = unk122 }
+    @Deprecated int getUnk122() { IOUtil.boolToInt(noSelectItem) }
+    @Deprecated void setUnk122(int unk122) { this.noSelectItem = IOUtil.intToBool(unk122) }
 
-    @Deprecated int getUnk123() { noItemDrag }
-    @Deprecated void setUnk123(int unk123) { this.noItemDrag = unk123 }
+    @Deprecated int getUnk123() { IOUtil.boolToInt(noItemDrag) }
+    @Deprecated void setUnk123(int unk123) { this.noItemDrag = IOUtil.intToBool(unk123) }
 
-    @Deprecated int getUnk124() { buttonClick }
-    @Deprecated void setUnk124(int unk124) { this.buttonClick = unk124 }
+    @Deprecated int getUnk124() { IOUtil.boolToInt(buttonClick) }
+    @Deprecated void setUnk124(int unk124) { this.buttonClick = IOUtil.intToBool(unk124) }
 
-    @Deprecated int getUnk125() { useCoolTime }
-    @Deprecated void setUnk125(int unk125) { this.useCoolTime = unk125 }
+    @Deprecated int getUnk125() { IOUtil.boolToInt(useCoolTime) }
+    @Deprecated void setUnk125(int unk125) { this.useCoolTime = IOUtil.intToBool(unk125) }
 
-    @Deprecated int getUnk126() { noScroll }
-    @Deprecated void setUnk126(int unk126) { this.noScroll = unk126 }
+    @Deprecated int getUnk126() { IOUtil.boolToInt(noScroll) }
+    @Deprecated void setUnk126(int unk126) { this.noScroll = IOUtil.intToBool(unk126) }
 
     @Deprecated String getUnk128() { outLineUp }
     @Deprecated void setUnk128(String unk128) { this.outLineUp = unk128 }

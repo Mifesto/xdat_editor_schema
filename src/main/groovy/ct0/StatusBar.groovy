@@ -10,37 +10,55 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class StatusBar extends DefaultProperty {
     String title
-    int textureWidth
-    int textureHeight
+    int barWidth
+    int barHeight
     @Tex
-    String foreTexture
+    String foreTex
     @Tex
-    String backTexture
+    String backTex
     @Tex
-    String warnTexture
+    String warnTex
     @Tex
-    String regenTexture
+    String regenTex
 
     // @formatter:off
     @Deprecated String getUnk100() { title }
     @Deprecated void setUnk100(String unk100) { this.title = unk100 }
 
-    @Deprecated int getUnk101() { textureWidth }
-    @Deprecated void setUnk101(int unk101) { this.textureWidth = unk101 }
+    @Deprecated int getUnk101() { barWidth }
+    @Deprecated void setUnk101(int unk101) { this.barWidth = unk101 }
 
-    @Deprecated int getUnk102() { textureHeight }
-    @Deprecated void setUnk102(int unk102) { this.textureHeight = unk102 }
+    @Deprecated int getTextureWidth() { barWidth }
+    @Deprecated void setTextureWidth(int textureWidth) { this.barWidth = textureWidth }
 
-    @Deprecated String getUnk103() { foreTexture }
-    @Deprecated void setUnk103(String unk103) { this.foreTexture = unk103 }
+    @Deprecated int getUnk102() { barHeight }
+    @Deprecated void setUnk102(int unk102) { this.barHeight = unk102 }
 
-    @Deprecated String getUnk104() { backTexture }
-    @Deprecated void setUnk104(String unk104) { this.backTexture = unk104 }
+    @Deprecated int getTextureHeight() { barHeight }
+    @Deprecated void setTextureHeight(int textureHeight) { this.barHeight = textureHeight }
 
-    @Deprecated String getUnk105() { warnTexture }
-    @Deprecated void setUnk105(String unk105) { this.warnTexture = unk105 }
+    @Deprecated String getUnk103() { foreTex }
+    @Deprecated void setUnk103(String unk103) { this.foreTex = unk103 }
 
-    @Deprecated String getUnk106() { regenTexture }
-    @Deprecated void setUnk106(String unk106) { this.regenTexture = unk106 }
+    @Deprecated String getForeTexture() { foreTex }
+    @Deprecated void setForeTexture(String foreTexture) { this.foreTex = foreTexture }
+
+    @Deprecated String getUnk104() { backTex }
+    @Deprecated void setUnk104(String unk104) { this.backTex = unk104 }
+
+    @Deprecated String getBackTexture() { backTex }
+    @Deprecated void setBackTexture(String backTexture) { this.backTex = backTexture }
+
+    @Deprecated String getUnk105() { warnTex }
+    @Deprecated void setUnk105(String unk105) { this.warnTex = unk105 }
+
+    @Deprecated String getWarnTexture() { warnTex }
+    @Deprecated void setWarnTexture(String warnTexture) { this.warnTex = warnTexture }
+
+    @Deprecated String getUnk106() { regenTex }
+    @Deprecated void setUnk106(String unk106) { this.regenTex = unk106 }
+
+    @Deprecated String getRegenTexture() { regenTex }
+    @Deprecated void setRegenTexture(String regenTexture) { this.regenTex = regenTexture }
     // @formatter:on
 }

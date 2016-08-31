@@ -2,6 +2,7 @@ package ct0
 
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.Description
+import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
 import groovy.transform.CompileStatic
@@ -20,7 +21,7 @@ class Texture extends DefaultProperty {
     float vSize
     @Description("0..255")
     int alpha
-    int isAnimTex
+    Boolean isAnimTex
 
     enum TextureCtrlType {
         Stretch,
@@ -62,7 +63,7 @@ class Texture extends DefaultProperty {
     @Deprecated int getUnk107() { alpha }
     @Deprecated void setUnk107(int unk107) { this.alpha = unk107 }
 
-    @Deprecated int getUnk108() { isAnimTex }
-    @Deprecated void setUnk108(int unk108) { this.isAnimTex = unk108 }
+    @Deprecated int getUnk108() { IOUtil.boolToInt(isAnimTex) }
+    @Deprecated void setUnk108(int unk108) { this.isAnimTex = IOUtil.intToBool(unk108) }
     // @formatter:on
 }

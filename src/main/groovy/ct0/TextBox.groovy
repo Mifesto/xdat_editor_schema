@@ -2,6 +2,7 @@ package ct0
 
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
+import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
 import groovy.transform.CompileStatic
@@ -11,18 +12,18 @@ import javafx.scene.paint.Color
 @DefaultIO
 @CompileStatic
 class TextBox extends DefaultProperty {
-    String text
+    String text = 'undefined'
     TextAlign textAlign = TextAlign.Undefined
     int offsetY
     @Tex
-    String backTex
-    int fontType
+    String backTex = 'undefined'
+    int fontType = -9999
     @Sysstr
-    int sysstring
-    int systemMsg
+    int sysstring = -9999
+    int systemMsg = -9999
     Color textColor = new Color(0.0, 0.0, 0.0, 0.0)
-    int emoticon
-    int autosize
+    Boolean emoticon
+    Boolean autosize
 
     enum TextAlign {
         Undefined,
@@ -57,10 +58,10 @@ class TextBox extends DefaultProperty {
     @Deprecated Color getUnk107() { textColor }
     @Deprecated void setUnk107(Color unk107) { this.textColor = unk107 }
 
-    @Deprecated boolean getUnk108() { emoticon > 0 }
-    @Deprecated void setUnk108(boolean unk108) { this.emoticon = unk108 ? 1 : 0 }
+    @Deprecated boolean getUnk108() { emoticon }
+    @Deprecated void setUnk108(boolean unk108) { this.emoticon = unk108 }
 
-    @Deprecated int getUnk109() { autosize }
-    @Deprecated void setUnk109(int unk109) { this.autosize = unk109 }
+    @Deprecated int getUnk109() { IOUtil.boolToInt(autosize) }
+    @Deprecated void setUnk109(int unk109) { this.autosize = IOUtil.intToBool(unk109) }
     // @formatter:on
 }

@@ -3,6 +3,7 @@ package ct0
 import acmi.l2.clientmod.l2resources.Sysstr
 import acmi.l2.clientmod.l2resources.Tex
 import acmi.l2.clientmod.util.Description
+import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
 import groovy.transform.CompileStatic
@@ -17,15 +18,12 @@ class Button extends DefaultProperty {
     String pushedTex = 'undefined'
     @Tex
     String highlightTex = 'undefined'
-    @Description('undefined')
     @Tex
     String dropTex = 'undefined'
     @Sysstr
     int buttonName = -9999
-    @Description('-1')
-    int noHighlight = -1
-    @Description('-1')
-    int defaultSoundOn = -1
+    Boolean noHighlight
+    Boolean defaultSoundOn
     @Description('-9999/5000')
     int disableTime = -9999
 
@@ -45,11 +43,11 @@ class Button extends DefaultProperty {
     @Deprecated int getTextStringId() { buttonName }
     @Deprecated void setTextStringId(int textStringId) { this.buttonName = textStringId }
 
-    @Deprecated int getUnk106() { noHighlight }
-    @Deprecated void setUnk106(int unk106) { this.noHighlight = unk106 }
+    @Deprecated int getUnk106() { IOUtil.boolToInt(noHighlight) }
+    @Deprecated void setUnk106(int unk106) { this.noHighlight = IOUtil.intToBool(unk106) }
 
-    @Deprecated int getUnk107() { defaultSoundOn }
-    @Deprecated void setUnk107(int unk107) { this.defaultSoundOn = unk107 }
+    @Deprecated int getUnk107() { IOUtil.boolToInt(defaultSoundOn) }
+    @Deprecated void setUnk107(int unk107) { this.defaultSoundOn = IOUtil.intToBool(unk107) }
 
     @Deprecated int getUnk108() { disableTime }
     @Deprecated void setUnk108(int unk108) { this.disableTime = unk108 }

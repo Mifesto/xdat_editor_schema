@@ -1,6 +1,7 @@
 package ct0
 
 import acmi.l2.clientmod.l2resources.Tex
+import acmi.l2.clientmod.util.IntValue
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
 import groovy.transform.CompileStatic
@@ -9,7 +10,7 @@ import groovy.transform.CompileStatic
 @DefaultIO
 @CompileStatic
 class EffectButton extends DefaultProperty {
-    int type
+    Type type = Type.NORMAL
     @Tex
     String normalTex = 'undefined'
     @Tex
@@ -21,9 +22,30 @@ class EffectButton extends DefaultProperty {
     @Tex
     String effectTex2 = 'undefined'
 
+    enum Type implements IntValue {
+        NORMAL(-1),
+        TUTORIAL(0),
+        QUEST(1),
+        MAIL(2)
+
+        final int value
+
+        Type(int value) { this.value = value }
+
+        @Override
+        int intValue() { value }
+
+        static Type valueOf(int val) {
+            Optional.ofNullable(values().find { it.value == val })
+                    .orElseThrow({
+                new IllegalArgumentException("No ${getClass().simpleName} constant with value=$val")
+            })
+        }
+    }
+
     // @formatter:off
-    @Deprecated int getUnk100() { type }
-    @Deprecated void setUnk100(int unk100) { this.type = unk100 }
+    @Deprecated int getUnk100() { type.intValue() }
+    @Deprecated void setUnk100(int unk100) { this.type = Type.valueOf(unk100) }
 
     @Deprecated String getTex() { normalTex }
     @Deprecated void setTex(String tex) { this.normalTex = tex }

@@ -10,19 +10,19 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class FishViewportWindow extends DefaultProperty {
     @Tex
-    String texBack
+    String texBack = 'l2ui_ct1.Misc.Misc_df_innershadow'
     @Tex
-    String texClock
+    String texClock = 'l2ui_ch3.FishingWnd.fishing_clockicon'
     @Tex
-    String texFishHPBar
+    String texFishHPBar = 'l2ui_ch3.FishingWnd.fishing_bar1'
     @Tex
-    String texFishHPBarBack
+    String texFishHPBarBack = 'l2ui_ch3.FishingWnd.fishing_bar2'
     @Tex
-    String texFishFakeHPBarWarning
+    String texFishFakeHPBarWarning = 'l2ui_ch3.PlayerStatusWnd.ps_hpbarwarn1'
     @Tex
-    String texFishingEffect
+    String texFishingEffect = 'l2ui_ch3.FishingWnd.fishing_effect'
     @Tex
-    String texIconPumping
+    String texIconPumping = 'Icon.skill_i.skill1313'
     @Tex
-    String texIconReeling
+    String texIconReeling = 'Icon.skill_i.skill1314'
 }

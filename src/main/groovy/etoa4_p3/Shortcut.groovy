@@ -302,18 +302,14 @@ class Shortcut implements IOEntity {
 
         private String text
 
-        InputKey(String text){
+        InputKey(String text) {
             this.text = text
         }
 
         @Override
-        String toString() {
-            text
-        }
+        String toString() { text }
     }
 
     @Override
-    String toString() {
-        return name
-    }
+    String toString() { name }
 }

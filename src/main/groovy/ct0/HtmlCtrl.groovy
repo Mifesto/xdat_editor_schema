@@ -13,7 +13,7 @@ class HtmlCtrl extends DefaultProperty {
     String viewType
 
     // @formatter:off
-    @Deprecated String getType() { return viewType }
+    @Deprecated String getType() { viewType }
     @Deprecated void setType(String type) { this.viewType = type }
     // @formatter:on
 }

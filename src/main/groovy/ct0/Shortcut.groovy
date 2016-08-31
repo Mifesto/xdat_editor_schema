@@ -8,22 +8,20 @@ import groovy.transform.CompileStatic
 @DefaultIO
 @CompileStatic
 class Shortcut implements IOEntity {
-    String unk0
-    String unk1
+    String name
+    String state
     @Type(Action.class)
     List<Action> actions = []
 
     @DefaultIO
     static class Action implements IOEntity {
-        InputKey key_1 = InputKey.IK_None
-        InputKey key_2 = InputKey.IK_None
-        InputKey key_3 = InputKey.IK_None
-        String action
+        InputKey key = InputKey.IK_None
+        InputKey subKey1 = InputKey.IK_None
+        InputKey subKey2 = InputKey.IK_None
+        String command
 
         @Override
-        String toString() {
-            return action
-        }
+        String toString() { command }
 
         enum InputKey {
             IK_None('None'),
@@ -289,14 +287,32 @@ class Shortcut implements IOEntity {
             }
 
             @Override
-            String toString() {
-                text
-            }
+            String toString() { text }
         }
+
+        // @formatter:off
+        @Deprecated InputKey getKey_1() { key }
+        @Deprecated void setKey_1(InputKey key_1) { this.key = key_1 }
+
+        @Deprecated InputKey getKey_2() { subKey1 }
+        @Deprecated void setKey_2(InputKey key_2) { this.subKey1 = key_2 }
+
+        @Deprecated InputKey getKey_3() { subKey2 }
+        @Deprecated void setKey_3(InputKey key_3) { this.subKey2 = key_3 }
+
+        @Deprecated String getAction() { command }
+        @Deprecated void setAction(String action) { this.command = action }
+        // @formatter:on
     }
 
     @Override
-    String toString() {
-        return unk0
-    }
+    String toString() { name }
+
+    // @formatter:off
+    @Deprecated String getUnk0() { name }
+    @Deprecated void setUnk0(String unk0) { this.name = unk0 }
+
+    @Deprecated String getUnk1() { state }
+    @Deprecated void setUnk1(String unk1) { this.state = unk1 }
+    // @formatter:on
 }

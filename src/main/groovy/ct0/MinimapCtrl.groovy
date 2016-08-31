@@ -8,12 +8,12 @@ import groovy.transform.CompileStatic
 @DefaultIO
 @CompileStatic
 class MinimapCtrl extends DefaultProperty {
-    boolean showTime
-    boolean showTown
-    boolean showGrid
-    boolean showMyLocMark
-    boolean showMyLocText
-    boolean showSSQText
+    boolean showTime = true
+    boolean showTown = true
+    boolean showGrid = true
+    boolean showMyLocMark = true
+    boolean showMyLocText = true
+    boolean showSSQText = true
 
     // @formatter:off
     @Deprecated boolean getUnk100() { showTime }

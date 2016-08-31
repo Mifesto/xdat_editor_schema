@@ -1,5 +1,6 @@
 package ct0
 
+import acmi.l2.clientmod.util.IOUtil
 import acmi.l2.clientmod.util.defaultio.DefaultIO
 import groovy.beans.Bindable
 import groovy.transform.CompileStatic
@@ -11,7 +12,7 @@ class TextListBox extends DefaultProperty {
     int maxRow
     int showRow
     int lineGap
-    int isShowScroll
+    Boolean isShowScroll
 
     // @formatter:off
     @Deprecated int getUnk100() { maxRow }
@@ -23,7 +24,7 @@ class TextListBox extends DefaultProperty {
     @Deprecated int getUnk102() { lineGap }
     @Deprecated void setUnk102(int unk102) { this.lineGap = unk102 }
 
-    @Deprecated int getUnk103() { isShowScroll }
-    @Deprecated void setUnk103(int unk103) { this.isShowScroll = unk103 }
+    @Deprecated int getUnk103() { IOUtil.boolToInt(isShowScroll) }
+    @Deprecated void setUnk103(int unk103) { this.isShowScroll = IOUtil.intToBool(unk103) }
     // @formatter:on
 }

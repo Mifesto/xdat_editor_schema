@@ -8,8 +8,8 @@ import groovy.transform.CompileStatic
 @DefaultIO
 @CompileStatic
 class StatusIconCtrl extends DefaultProperty {
-    boolean noClip
-    boolean noTooltip
+    Boolean noClip
+    Boolean noTooltip
 
     // @formatter:off
     @Deprecated boolean getUnk100() { noClip }
