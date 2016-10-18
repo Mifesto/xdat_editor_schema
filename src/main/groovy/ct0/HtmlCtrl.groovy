@@ -10,7 +10,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class HtmlCtrl extends DefaultProperty {
     @Description("''/'Normal'/'Help'/'BBS'")
-    String viewType
+    String viewType = "Normal"
 
     // @formatter:off
     @Deprecated String getType() { viewType }

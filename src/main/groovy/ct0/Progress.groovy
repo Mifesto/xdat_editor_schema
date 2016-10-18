@@ -10,9 +10,9 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Progress extends DefaultProperty {
     @Tex
-    String backTexture
+    String backTexture = 'undefined'
     @Tex
-    String barTexture
+    String barTexture = 'undefined'
     int gap
 
     // @formatter:off

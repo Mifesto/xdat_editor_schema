@@ -12,7 +12,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Texture extends DefaultProperty {
     @Tex
-    String file
+    String file = 'undefined'
     TextureCtrlType type = TextureCtrlType.Stretch
     TextureLayer layer = TextureLayer.None
     float u

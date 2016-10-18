@@ -25,13 +25,13 @@ class SliderCtrl extends DefaultProperty {
     int pushBtnHeight = -1
     int pushBtnAutoHitTime = 300
     @Tex
-    String strDecreaseBtnNormalTexture
+    String strDecreaseBtnNormalTexture = ''
     @Tex
-    String strDecreaseBtnDownTexture
+    String strDecreaseBtnDownTexture = ''
     @Tex
-    String strIncreaseBtnNormalTexture
+    String strIncreaseBtnNormalTexture = ''
     @Tex
-    String strIncreaseBtnDownTexture
+    String strIncreaseBtnDownTexture = ''
     @Tex
     String tickTexture = 'L2UI_ch3.Button.slider_mark'
 

@@ -9,17 +9,17 @@ import groovy.transform.CompileStatic
 @DefaultIO
 @CompileStatic
 class StatusBar extends DefaultProperty {
-    String title
+    String title = ''
     int barWidth
     int barHeight
     @Tex
-    String foreTex
+    String foreTex = 'undefined'
     @Tex
-    String backTex
+    String backTex = 'undefined'
     @Tex
-    String warnTex
+    String warnTex = 'undefined'
     @Tex
-    String regenTex
+    String regenTex = 'undefined'
 
     // @formatter:off
     @Deprecated String getUnk100() { title }
