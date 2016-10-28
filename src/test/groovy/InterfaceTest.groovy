@@ -14,11 +14,8 @@ class InterfaceTest {
         new CountingInputStream(new ByteArrayInputStream(originalBytes)).with {
             try {
                 xdat.read(it)
-            } catch (IOException e) {
-                System.err.println("Position: " + it.count)
-                e.printStackTrace(System.err)
-
-                fail("Couldn't read xdat");
+            } catch (Throwable e) {
+                throw new IllegalStateException("Couldn't read xdat. Position: ${it.count}", e)
             }
         }
 
