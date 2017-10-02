@@ -147,4 +147,10 @@ class PropertiesTest {
         new etoa4_p3.XDAT()
         test(SubclassManager.instance.getClassWithAllSubclasses(etoa4_p3.DefaultProperty))
     }
+
+    @Test
+    void Salvation() {
+        new etoa5.XDAT()
+        test(SubclassManager.instance.getClassWithAllSubclasses(etoa5.DefaultProperty))
+    }
 }

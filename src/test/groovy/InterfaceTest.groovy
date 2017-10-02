@@ -3,7 +3,6 @@ import org.apache.commons.io.input.CountingInputStream
 import org.junit.Test
 
 import static org.junit.Assert.assertArrayEquals
-import static org.junit.Assert.fail
 
 class InterfaceTest {
     void test(Class<? extends IOEntity> clazz, String resource) {
@@ -156,5 +155,10 @@ class InterfaceTest {
     @Test
     void GrandCrusadeP3() {
         test(etoa4_p3.XDAT, 'interface/Interface_grand_crusade_p3.xdat')
+    }
+
+    @Test
+    void Salvation() {
+        test(etoa5.XDAT, 'interface/Interface_salvation.xdat')
     }
 }
